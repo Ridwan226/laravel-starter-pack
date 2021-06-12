@@ -15,6 +15,10 @@
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+    <!-- summernote -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+   @yield('app-css')
 
 </head>
 
@@ -74,7 +78,11 @@
 
   <!-- App js -->
   <script src="{{ asset('assets/js/app.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+   @yield('app-js')
+  
 </body>
 
 </html>
