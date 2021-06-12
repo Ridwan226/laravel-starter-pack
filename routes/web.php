@@ -34,6 +34,10 @@ Route::prefix('administrator')->group(function () {
 
 
   Route::get('/permissions', [PermissionAndRoleController::class, 'indexPermissions']);
+  Route::post('/permissions/add', [PermissionAndRoleController::class, 'addPermission']);
+  Route::post('/permissions/edit', [PermissionAndRoleController::class, 'editPermission']);
+  Route::post('/permissions/update', [PermissionAndRoleController::class, 'updatePermission']);
+  Route::post('/permissions/del', [PermissionAndRoleController::class, 'delPermission']);
 });
 
 
