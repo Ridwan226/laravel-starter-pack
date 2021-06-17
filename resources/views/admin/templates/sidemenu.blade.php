@@ -6,7 +6,7 @@
       <div class="left-side-logo d-block d-lg-none">
         <div class="text-center">
 
-          <a href="index.html" class="logo"><img src="{{ asset('assets/images/logo_dark.png') }}" height="20" alt="logo"></a>
+          <a href="{{ url('administrator/dashboard') }}" class="logo"><img src="{{ asset('assets/images/logo_dark.png') }}" height="20" alt="logo"></a>
         </div>
       </div>
 
@@ -28,6 +28,7 @@
               <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> Account </span>
                 <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
               <ul class="list-unstyled">
+                <li><a href="{{ url('administrator/users') }}">Users</a></li>
                 <li><a href="{{ url('administrator/permissions') }}">Permissions</a></li>
                 <li><a href="{{ url('administrator/roles') }}">User Groups / Roles</a></li>
               </ul>

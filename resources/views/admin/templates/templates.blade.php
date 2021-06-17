@@ -15,10 +15,10 @@
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
-    <!-- summernote -->
+  <!-- summernote -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
-   @yield('app-css')
+  @yield('app-css')
 
 </head>
 
@@ -45,17 +45,14 @@
         <!-- Top Bar End -->
 
         <div class="page-content-wrapper ">
-
+          @include('admin.templates.message')
           @yield('content')
 
         </div> <!-- Page content Wrapper -->
 
       </div> <!-- content -->
 
-      <footer class="footer">
-        © 2019 Zinzer <span class="d-none d-md-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i>
-          by Themesdesign.</span>
-      </footer>
+      @include('admin.templates.footer')
 
     </div>
     <!-- End Right content here -->
@@ -81,8 +78,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-   @yield('app-js')
-  
+  @yield('app-js')
+
 </body>
 
 </html>
