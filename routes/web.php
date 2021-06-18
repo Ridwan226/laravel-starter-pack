@@ -50,6 +50,7 @@ Route::prefix('administrator')->group(function () {
     Route::post('/users/update', [UserController::class, 'updateUser']);
     Route::post('/users/del', [UserController::class, 'delUser']);
     Route::get('/users/detail/{id}', [UserController::class, 'detailUser']);
+    Route::post('users/assignpermission', [UserController::class, 'assignPermission']);
   });
 });
 

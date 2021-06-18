@@ -12,6 +12,9 @@ class PermissionAndRoleController extends Controller
 {
   public function index(Request $request)
   {
+    if (!auth()->user()->can('roles_list')) {
+      return redirect()->back()->with(['flash_message_error' => 'Not Access Permission']);
+    }
     $roles = Role::query();
     if ($request->ajax()) {
       return datatables()->of($roles)
@@ -28,6 +31,9 @@ class PermissionAndRoleController extends Controller
 
   public function addRoles(Request $request)
   {
+    if (!auth()->user()->can('roles_add')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
     $rules = [
       'name' => 'required',
     ];
@@ -45,6 +51,9 @@ class PermissionAndRoleController extends Controller
 
   public function editRoles(Request $request)
   {
+    if (!auth()->user()->can('roles_edit')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
     $data = Role::find($request->id);
 
     if (!$data) {
@@ -56,6 +65,9 @@ class PermissionAndRoleController extends Controller
 
   public function updateRoles(Request $request)
   {
+    if (!auth()->user()->can('roles_edit')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
     $rules = [
       'name' => 'required',
       'id_edit' => 'required',
@@ -80,6 +92,9 @@ class PermissionAndRoleController extends Controller
 
   public function delRoles(Request $request)
   {
+    if (!auth()->user()->can('roles_delete')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
     $data = Role::find($request->id);
 
     if (!$data) {
@@ -91,6 +106,10 @@ class PermissionAndRoleController extends Controller
 
   public function indexPermissions(Request $request)
   {
+    if (!auth()->user()->can('permission_list')) {
+      return redirect()->back()->with(['flash_message_error' => 'Not Access Permission']);
+    }
+
     $perm = Permission::query();
     if ($request->ajax()) {
       return datatables()->of($perm)
@@ -108,6 +127,10 @@ class PermissionAndRoleController extends Controller
 
   public function addPermission(Request $request)
   {
+    if (!auth()->user()->can('permission_add')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
+
     $rules = [
       'name' => 'required',
     ];
@@ -125,6 +148,9 @@ class PermissionAndRoleController extends Controller
 
   public function editPermission(Request $request)
   {
+    if (!auth()->user()->can('permission_edit')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
     $data = Permission::find($request->id);
 
     if (!$data) {
@@ -136,6 +162,9 @@ class PermissionAndRoleController extends Controller
 
   public function updatePermission(Request $request)
   {
+    if (!auth()->user()->can('permission_edit')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
     $rules = [
       'name' => 'required',
       'id_edit' => 'required',
@@ -160,6 +189,9 @@ class PermissionAndRoleController extends Controller
 
   public function delPermission(Request $request)
   {
+    if (!auth()->user()->can('permission_delete')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
     $data = Permission::find($request->id);
 
     if (!$data) {
