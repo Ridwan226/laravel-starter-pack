@@ -21,6 +21,7 @@ class PermissionAndRoleController extends Controller
         ->addColumn('aksi', function ($data) {
           $button = '<button class="btn btn-primary waves-effect waves-light btn-sm edit" id="' . $data->id . '" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fas fa-edit"></i></button>';
           $button .= '<button class="btn btn-sm btn-danger ml-1 hapus" id="' . $data->id . '" name="hapus"><i class="fas fa-trash"></i></button>';
+          $button .= '<a href="' . url('administrator/roles/assignperm/' . $data->id) . '" class="btn btn-sm btn-info ml-1" id="' . $data->id . '"><i class="fas fa-eye"></i></a>';
           return $button;
         })->rawColumns(['aksi'])
         ->make(true);
@@ -103,6 +104,63 @@ class PermissionAndRoleController extends Controller
     $data->delete();
     return response()->json(['message' => 'Data Berhasil Di Hapus'], 200);
   }
+
+  public function assignPerm(Request $request, $id)
+  {
+    if (!auth()->user()->can('roles_access_perm')) {
+      return redirect()->back()->with(['flash_message_error' => 'Not Access Permission']);
+      // return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
+
+    $role = Role::find($id);
+
+    if (!$role) {
+      return redirect()->back()->with(['flash_message_error' => 'Data Roles Tidak tersedia']);
+    }
+
+    $perm = Permission::query();
+    if ($request->ajax()) {
+      return datatables()->of($perm)
+        ->addColumn('aksi', function ($data) use ($role) {
+          $button = '';
+
+          if ($role->hasPermissionTo($data->name)) {
+            $button .= '<button class="btn btn-default waves-effect waves-light btn-sm permission" id="' . $data->name . '" data-access="0" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fas fa-toggle-on"></i></button>';
+          } else {
+            $button .= '<button class="btn btn-default waves-effect waves-light btn-sm permission" id="' . $data->name . '"  data-access="1" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fas fa-toggle-off"></i></button>';
+          }
+          return $button;
+        })->rawColumns(['aksi'])
+        ->make(true);
+    }
+    return view('admin.permissionRoles.roles.assignpermission')->with(compact('role'));
+  }
+
+  public function addAssignPermToGroup(Request $request)
+  {
+    if (!auth()->user()->can('roles_access_perm')) {
+      return response()->json(['message' => 'Permisson Not Access'], 422);
+    }
+
+    $nameroles = $request->nameroles;
+    $permission_name = $request->permission_name;
+    $dataaccess = $request->dataaccess;
+    $role = Role::findByName($nameroles);
+
+    if ($dataaccess == 1) {
+      $role->givePermissionTo($permission_name);
+    } else {
+      $role->revokePermissionTo($permission_name);
+    }
+
+    return response()->json(['message' => 'Data Berhasil Di Edit'], 200);
+  }
+
+
+
+
+
+  // Permisson
 
   public function indexPermissions(Request $request)
   {
