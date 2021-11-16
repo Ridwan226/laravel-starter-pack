@@ -1,58 +1,63 @@
 @extends('admin.templates.templates')
 
 @section('app-css')
-  <!-- DataTables -->
-  <link href="{{ asset('/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-  <link href="{{ asset('/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<!-- DataTables -->
+<link href="{{ asset('/assets/admin/vendor_components/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+  type="text/css" />
+<link href="{{ asset('/assets/admin/vendor_components/datatable/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+  type="text/css" />
 
-  <!-- Responsive datatable examples -->
-  <link href="{{ asset('/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<!-- Responsive datatable examples -->
+<link href="{{ asset('/assets/admin/vendor_components/datatable/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+  type="text/css" />
 @endsection
 
 
 @section('content')
 
-  <div class="container-fluid">
+<section class="content">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="page-title-box">
-          <div class="row align-items-center">
-            <div class="col-md-8">
-              <h4 class="page-title m-0">Setting Permissions</h4>
-            </div>
-            <div class="col-md-4">
-              <div class="float-right d-none d-md-block">
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="ti-settings mr-1"></i> Menu
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                    <button class="dropdown-item" id="btn-tambah" data-toggle="modal" data-target="#myModal">Add
-                      Roles</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end col -->
-          </div>
-          <!-- end row -->
+  <div class="content-header">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="page-title">Data Roles</h3>
+        <div class="d-inline-block align-items-center">
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ url('administrator/dashboard') }}"><i
+                    class="mdi mdi-home-outline"></i></a></li>
+              <li class="breadcrumb-item" aria-current="page">Dashboard</li>
+              <li class="breadcrumb-item active" aria-current="page">Roles</li>
+            </ol>
+          </nav>
         </div>
-        <!-- end page-title-box -->
+      </div>
+      <div class="right-title">
+        <div class="dropdown">
+          <button class="btn btn-outline dropdown-toggle no-caret" type="button" data-toggle="dropdown"><i
+              class="mdi mdi-dots-horizontal"></i></button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" id="btn-tambah" data-toggle="modal" data-target="#myModal"><i
+                class="mdi mdi-library-plus"></i>Add Data</button>
+
+          </div>
+        </div>
       </div>
     </div>
-    <!-- end page title -->
+  </div>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="card m-b-30">
-          <div class="card-body">
 
-            <h4 class="mt-0 header-title">All Data Roles</h4>
-
-            <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap"
-              style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+  <div class="row">
+    <div class="col-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List All</h3>
+          <h6 class="box-subtitle">List All</h6>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table id="datatable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
               <thead>
                 <tr>
                   <th>Id</th>
@@ -61,80 +66,76 @@
                   <th>Action</th>
                 </tr>
               </thead>
+
+
             </table>
-
           </div>
         </div>
-      </div> <!-- end col -->
+        <!-- /.box-body -->
+      </div>
     </div>
+  </div>
 
-  </div><!-- container fluid -->
+</section><!-- container fluid -->
 
-  <!-- sample modal content -->
-  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title mt-0" id="myModalLabel">Add Data</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<!-- sample modal content -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0" id="myModalLabel">Add Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ url('administrator/roles/add') }}" method="post" id="forms"> @csrf
+        <input type="hidden" name="id_edit" id="id_edit" />
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Name Roles</label>
+            <input type="text" class="form-control" name="name" id="name" required placeholder="Type something" />
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" name="desc" id="desc" placeholder="Type something" />
+          </div>
+
         </div>
-        <form action="{{ url('administrator/roles/add') }}" method="post" id="forms"> @csrf
-          <input type="hidden" name="id_edit" id="id_edit" />
-          <div class="modal-body">
-            <div class="form-group">
-              <label>Name Roles</label>
-              <input type="text" class="form-control" name="name" id="name" required placeholder="Type something" />
-            </div>
-
-            <div class="form-group">
-              <label>Description</label>
-              <input type="text" class="form-control" name="desc" id="desc" placeholder="Type something" />
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="btn-close" class="btn btn-secondary waves-effect"
-              data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
-          </div>
-        </form>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+        <div class="modal-footer">
+          <button type="button" id="btn-close" class="btn btn-secondary waves-effect"
+            data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @endsection
 
 
 @section('app-js')
 
-  <!-- Required datatable js -->
-  <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
-  <!-- Buttons examples -->
-  <script src="{{ asset('/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/jszip.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/pdfmake.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/vfs_fonts.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/buttons.html5.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/buttons.print.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/buttons.colVis.min.js') }}"></script>
-  <!-- Responsive examples -->
-  <script src="{{ asset('/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-  <script src="{{ asset('/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
-
-  <!-- Parsley js -->
-  <script src="{{ asset('/plugins/parsleyjs/parsley.min.js') }}"></script>
+<!-- Required datatable js -->
+<script src="{{ asset('/assets/admin/vendor_components/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/dataTables.bootstrap4.min.js') }}"></script>
+<!-- Buttons examples -->
+<script src="{{ asset('/assets/admin/vendor_components/datatable/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/jszip.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/pdfmake.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/vfs_fonts.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/buttons.print.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/buttons.colVis.min.js') }}"></script>
+<!-- Responsive examples -->
+<script src="{{ asset('/assets/admin/vendor_components/datatable/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/assets/admin/vendor_components/datatable/responsive.bootstrap4.min.js') }}"></script>
 
 
-  <script>
-    $(document).ready(function() {
-      $('form').parsley();
-    });
-
-    $('#myModal').on('hidden.bs.modal', function(e) {
+<script>
+  $('#myModal').on('hidden.bs.modal', function(e) {
       $('#forms').attr('action', "{{ url('/administrator/roles/add') }}")
       $('#forms')[0].reset();
     })
@@ -161,10 +162,10 @@
       })
     })
 
-  </script>
+</script>
 
-  <script>
-    $(document).ready(function() {
+<script>
+  $(document).ready(function() {
       $('#datatable').DataTable({
         processing: true,
         serverSide: true, //aktifkan server-side
@@ -264,6 +265,5 @@
       })
     })
 
-  </script>
+</script>
 @endsection
- 

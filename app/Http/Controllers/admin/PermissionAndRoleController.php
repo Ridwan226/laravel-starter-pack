@@ -19,9 +19,9 @@ class PermissionAndRoleController extends Controller
     if ($request->ajax()) {
       return datatables()->of($roles)
         ->addColumn('aksi', function ($data) {
-          $button = '<button class="btn btn-primary waves-effect waves-light btn-sm edit" id="' . $data->id . '" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fas fa-edit"></i></button>';
-          $button .= '<button class="btn btn-sm btn-danger ml-1 hapus" id="' . $data->id . '" name="hapus"><i class="fas fa-trash"></i></button>';
-          $button .= '<a href="' . url('administrator/roles/assignperm/' . $data->id) . '" class="btn btn-sm btn-info ml-1" id="' . $data->id . '"><i class="fas fa-eye"></i></a>';
+          $button = '<button class="btn btn-primary waves-effect waves-light btn-sm edit" id="' . $data->id . '" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fa fa-edit"></i></button>';
+          $button .= '<button class="btn btn-sm btn-danger ml-1 hapus" id="' . $data->id . '" name="hapus"><i class="fa fa-trash"></i></button>';
+          $button .= '<a href="' . url('administrator/roles/assignperm/' . $data->id) . '" class="btn btn-sm btn-info ml-1" id="' . $data->id . '"><i class="fa fa-eye"></i></a>';
           return $button;
         })->rawColumns(['aksi'])
         ->make(true);
@@ -125,9 +125,9 @@ class PermissionAndRoleController extends Controller
           $button = '';
 
           if ($role->hasPermissionTo($data->name)) {
-            $button .= '<button class="btn btn-default waves-effect waves-light btn-sm permission" id="' . $data->name . '" data-access="0" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fas fa-toggle-on"></i></button>';
+            $button .= '<button class="btn btn-success waves-effect waves-light btn-sm permission" id="' . $data->name . '" data-access="0" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fa fa-toggle-on"></i></button>';
           } else {
-            $button .= '<button class="btn btn-default waves-effect waves-light btn-sm permission" id="' . $data->name . '"  data-access="1" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fas fa-toggle-off"></i></button>';
+            $button .= '<button class="btn btn-warning waves-effect waves-light btn-sm permission" id="' . $data->name . '"  data-access="1" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fa fa-toggle-off"></i></button>';
           }
           return $button;
         })->rawColumns(['aksi'])
@@ -172,8 +172,8 @@ class PermissionAndRoleController extends Controller
     if ($request->ajax()) {
       return datatables()->of($perm)
         ->addColumn('aksi', function ($data) {
-          $button = '<button class="btn btn-primary waves-effect waves-light btn-sm edit" id="' . $data->id . '" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fas fa-edit"></i></button>';
-          $button .= '<button class="btn btn-sm btn-danger ml-1 hapus" id="' . $data->id . '" name="hapus"><i class="fas fa-trash"></i></button>';
+          $button = '<button class="btn btn-primary waves-effect waves-light btn-sm edit" id="' . $data->id . '" data-toggle="tooltip" data-placement="right" title="Edit Data Yang Anda Pilih"><i class="fa fa-edit"></i></button>';
+          $button .= '<button class="btn btn-sm btn-danger ml-1 hapus" id="' . $data->id . '" name="hapus"><i class="fa fa-trash"></i></button>';
           return $button;
         })->rawColumns(['aksi'])
         ->make(true);

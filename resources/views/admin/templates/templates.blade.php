@@ -12,72 +12,84 @@
 
   <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-  <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+  <!-- Bootstrap 4.0-->
+  <link rel="stylesheet" href="{{ asset('assets/admin/vendor_components/bootstrap/dist/css/bootstrap.min.css') }}">
 
+  <!-- theme style -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
+
+  <!-- Admin skins -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/skin_color.css') }}">
+   <!-- summernote -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
   @yield('app-css')
 
 </head>
 
 
-<body class="fixed-left">
 
+<!-- Begin page -->
 
-  <!-- Begin page -->
-  <div id="wrapper">
+<body class="hold-transition light-skin sidebar-mini theme-fruit">
 
-    <!-- ========== Left Sidebar Start ========== -->
-
-    <!-- Left Sidebar End -->
-    @include('admin.templates.sidemenu')
-
-    <!-- Start right Content here -->
-
-    <div class="content-page">
-      <!-- Start content -->
-      <div class="content">
-
-        <!-- Top Bar Start -->
-        @include('admin.templates.header')
-        <!-- Top Bar End -->
-
-        <div class="page-content-wrapper ">
-          @include('admin.templates.message')
-          @yield('content')
-
-        </div> <!-- Page content Wrapper -->
-
-      </div> <!-- content -->
-
-      @include('admin.templates.footer')
-
+  <div class="wrapper">
+    <div class="art-bg">
+      <img src="https://adminvoice-admin-template.multipurposethemes.com/images/art1.svg" alt=""
+        class="art-img light-img">
+      <img src="https://adminvoice-admin-template.multipurposethemes.com/images/art2.svg" alt=""
+        class="art-img dark-img">
+      <img src="https://adminvoice-admin-template.multipurposethemes.com/images/art-bg.svg" alt=""
+        class="wave-img light-img">
+      <img src="https://adminvoice-admin-template.multipurposethemes.com/images/art-bg2.svg" alt=""
+        class="wave-img dark-img">
     </div>
-    <!-- End Right content here -->
+    @include('admin.templates.header')
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <div class="container-full clearfix position-relative">
+        @include('admin.templates.sidemenu')
+        @yield('content')
+      </div>
+    </div>
+
+    @include('admin.templates.footer')
   </div>
-  <!-- END wrapper -->
 
 
-  <!-- jQuery  -->
-  <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
-  <script src="{{ asset('assets/js/detect.js') }}"></script>
-  <script src="{{ asset('assets/js/fastclick.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.blockUI.js') }}"></script>
-  <script src="{{ asset('assets/js/waves.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.scrollTo.min.js') }}"></script>
 
-  <!-- App js -->
-  <script src="{{ asset('assets/js/app.js') }}"></script>
+
+
+  <!-- jQuery 3 -->
+  <script src="{{ asset('assets/admin/vendor_components/jquery-3.3.1/jquery-3.3.1.js') }}"></script>
+
+  <!-- fullscreen -->
+  <script src="{{ asset('assets/admin/vendor_components/screenfull/screenfull.js') }}"></script>
+
+  <!-- popper -->
+  <script src="{{ asset('assets/admin/vendor_components/popper/dist/popper.min.js') }}"></script>
+
+  <!-- Bootstrap 4.0-->
+  <script src="{{ asset('assets/admin/vendor_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+  <!-- SlimScroll -->
+  <script src="{{ asset('assets/admin/vendor_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+  <!-- FastClick -->
+  <script src="{{ asset('assets/admin/vendor_components/fastclick/lib/fastclick.js') }}"></script>
+
+  <!-- VoiceX Admin App -->
+  <script src="{{ asset('assets/admin/js/template.js') }}"></script>
+
+  <!-- VoiceX Admin for demo purposes -->
+  <script src="{{ asset('assets/admin/js/demo.js') }}"></script>
+  	<!-- Form validator JavaScript -->
+    <script src="{{ asset('assets/admin/js/pages/validation.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/pages/form-validation.js') }}"></script>
+
+  <!-- Sweet-Alert  -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
   @yield('app-js')
 
 </body>

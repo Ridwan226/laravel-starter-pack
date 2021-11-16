@@ -10,55 +10,51 @@
   <meta content="Ridwan" name="author" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+  {{-- <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}"> --}}
 
-  <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+  {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"> --}}
+  <!-- Bootstrap 4.0-->
+  <link rel="stylesheet" href="{{ asset('assets/admin/vendor_components/bootstrap/dist/css/bootstrap.min.css') }}">
+
+  <!-- theme style -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
+
+  <!-- Admin skins -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/skin_color.css') }}">
 
 </head>
 
 
-<body class="fixed-left">
+<body class="hold-transition theme-fruit">
 
-  <!-- Loader -->
-  <div id="preloader">
-    <div id="status">
-      <div class="spinner">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Begin page -->
-  <div class="home-btn d-none d-sm-block">
-    <a href="{{url('')}}" class="text-dark"><i class="mdi mdi-home h1"></i></a>
-  </div>
-
-  <div class="account-pages">
+  <div class="h-p100">
     @yield('content')
+    
   </div>
 
+ 
 
 
-  <!-- jQuery  -->
-  <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
-  <script src="{{ asset('assets/js/detect.js') }}"></script>
-  <script src="{{ asset('assets/js/fastclick.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.blockUI.js') }}"></script>
-  <script src="{{ asset('assets/js/waves.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.scrollTo.min.js') }}"></script>
+  <!-- jQuery 3 -->
+  <script src="{{ asset('assets/admin/vendor_components/jquery-3.3.1/jquery-3.3.1.js') }}"></script>
 
-  <!-- App js -->
-  <script src="{{ asset('assets/js/app.js') }}"></script>
+  <!-- fullscreen -->
+  <script src="{{ asset('assets/admin/vendor_components/screenfull/screenfull.js') }}"></script>
+
+  <!-- popper -->
+  <script src="{{ asset('assets/admin/vendor_components/popper/dist/popper.min.js') }}"></script>
+
+  <!-- Bootstrap 4.0-->
+  <script src="{{ asset('assets/admin/vendor_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  
+  	<!-- Form validator JavaScript -->
+    <script src="{{ asset('assets/admin/js/pages/validation.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/pages/form-validation.js') }}"></script>
+    
+
+
 
 </body>
 
